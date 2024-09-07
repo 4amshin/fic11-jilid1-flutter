@@ -1,8 +1,7 @@
-import 'package:fic11_starter_pos/core/extensions/build_context_ext.dart';
+import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/colors.dart';
-
 
 class MenuPrinterButton extends StatelessWidget {
   final String label;
