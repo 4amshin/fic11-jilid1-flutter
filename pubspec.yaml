@@ -19,6 +19,8 @@ dependencies:
   intl: ^0.19.0
   build_runner: ^2.4.12
   flutter_gen_runner: ^5.7.0
+  esc_pos_utils_plus: ^2.0.4
+  print_bluetooth_thermal: ^1.1.1
 
 dev_dependencies:
   flutter_test:
