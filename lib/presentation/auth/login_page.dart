@@ -4,6 +4,7 @@ import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/components/buttons.dart';
 import 'package:fic11_jilid1/core/components/custom_text_field.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
+import 'package:fic11_jilid1/data/data_sources/login_local_datasource.dart';
 // import 'package:fic11_jilid1/core/fic_providers.dart';
 import 'package:fic11_jilid1/data/models/request/login_request_model.dart';
 import 'package:fic11_jilid1/presentation/auth/bloc/login_bloc.dart';
@@ -105,7 +106,11 @@ class _LoginPageState extends State<LoginPage> {
             },
             listener: (context, state) {
               state.maybeWhen(
-                success: (loginResponseModel) {
+                success: (loginResponseModel) async {
+                  //Save User Token to Local Storage
+                  LoginLocalDatasource().saveAuthData(loginResponseModel);
+
+                  //Navigate to Dashboard Page
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

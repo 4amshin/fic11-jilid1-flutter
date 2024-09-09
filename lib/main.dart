@@ -1,7 +1,9 @@
 import 'package:fic11_jilid1/core/constants/colors.dart';
 import 'package:fic11_jilid1/core/fic_providers.dart';
+import 'package:fic11_jilid1/data/data_sources/login_local_datasource.dart';
 // import 'package:fic11_jilid1/core/fic_providers.dart';
 import 'package:fic11_jilid1/presentation/auth/login_page.dart';
+import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,7 +40,16 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const LoginPage(),
+        home: FutureBuilder(
+          future: LoginLocalDatasource().isLogin(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data!) {
+              return const DashboardPage();
+            } else {
+              return const LoginPage();
+            }
+          },
+        ),
       ),
     );
   }
