@@ -1,13 +1,14 @@
-import 'dart:developer';
-
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/components/buttons.dart';
 import 'package:fic11_jilid1/core/components/custom_text_field.dart';
+import 'package:fic11_jilid1/core/components/menu_button.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
-import 'package:fic11_jilid1/data/data_sources/login_local_datasource.dart';
+import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
+import 'package:fic11_jilid1/data/data_sources/auth_local_datasource.dart';
+import 'package:fic11_jilid1/data/data_sources/auth_remote_datasource.dart';
 // import 'package:fic11_jilid1/core/fic_providers.dart';
 import 'package:fic11_jilid1/data/models/request/login_request_model.dart';
-import 'package:fic11_jilid1/presentation/auth/bloc/login_bloc.dart';
+import 'package:fic11_jilid1/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,57 +79,55 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: true,
           ),
           const SpaceHeight(24.0),
-          BlocConsumer<LoginBloc, LoginState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () {
-                  return Button.filled(
-                    onPressed: () {
-                      final input = LoginRequestModel(
-                        email: usernameController.text,
-                        password: passwordController.text,
-                      );
-                      context.read<LoginBloc>().add(
-                            LoginEvent.login(
-                              loginRequestModel: input,
-                            ),
-                          );
-                    },
-                    label: 'Masuk',
-                  );
-                },
-                loading: () {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-              );
-            },
-            listener: (context, state) {
-              state.maybeWhen(
-                success: (loginResponseModel) async {
-                  //Save User Token to Local Storage
-                  LoginLocalDatasource().saveAuthData(loginResponseModel);
+          BlocProvider(
+            create: (context) => LoginBloc(AuthRemoteDatasource()),
+            child: BlocConsumer<LoginBloc, LoginState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () {
+                    return Button.filled(
+                      onPressed: () {
+                        final input = LoginRequestModel(
+                          email: usernameController.text,
+                          password: passwordController.text,
+                        );
+                        context.read<LoginBloc>().add(
+                              LoginEvent.login(
+                                loginRequestModel: input,
+                              ),
+                            );
+                      },
+                      label: 'Masuk',
+                    );
+                  },
+                  loading: () {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                );
+              },
+              listener: (context, state) {
+                state.maybeWhen(
+                  success: (loginResponseModel) async {
+                    //Save User Token to Local Storage
+                    AuthLocalDatasource().saveAuthData(loginResponseModel);
 
-                  //Navigate to Dashboard Page
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DashboardPage(),
-                    ),
-                  );
-                },
-                error: (message) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(message),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                },
-                orElse: () {},
-              );
-            },
+                    //Navigate to Dashboard Page
+                    context.pushReplacement(const DashboardPage());
+                  },
+                  error: (message) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(message),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  },
+                  orElse: () {},
+                );
+              },
+            ),
           ),
         ],
       ),

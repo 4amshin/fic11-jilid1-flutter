@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:fic11_jilid1/data/models/response/login_response_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginLocalDatasource {
+class AuthLocalDatasource {
   Future<bool> saveAuthData(LoginResponseModel model) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     final res = await pref.setString('auth', model.toRawJson());
@@ -21,6 +21,7 @@ class LoginLocalDatasource {
   Future<bool> removeToken() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     final res = await pref.remove('auth');
+    log('Remove Login Token');
     return res;
   }
 

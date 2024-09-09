@@ -1,5 +1,6 @@
-import 'package:fic11_jilid1/data/data_sources/login_remote_datasource.dart';
-import 'package:fic11_jilid1/presentation/auth/bloc/login_bloc.dart';
+import 'package:fic11_jilid1/data/data_sources/auth_remote_datasource.dart';
+import 'package:fic11_jilid1/presentation/auth/bloc/login/login_bloc.dart';
+import 'package:fic11_jilid1/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,8 +16,11 @@ class FicProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LoginBloc(LoginRemoteDatasource()),
-        )
+          create: (context) => LoginBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
       ],
       child: child,
     );
