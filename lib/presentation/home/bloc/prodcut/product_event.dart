@@ -7,4 +7,5 @@ class ProductEvent with _$ProductEvent {
   const factory ProductEvent.getByCategory({
     required String category,
   }) = _GetByCategory;
+  const factory ProductEvent.getLocal() = _GetLocal;
 }

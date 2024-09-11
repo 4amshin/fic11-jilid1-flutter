@@ -23,7 +23,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> _pages = [
     BlocProvider(
       create: (context) => ProductBloc(ProductRemoteDatasource())
-        ..add(const ProductEvent.getProduct()),
+        ..add(const ProductEvent.getLocal()),
       child: const HomePage(),
     ),
     const OrdersPage(),

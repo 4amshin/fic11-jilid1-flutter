@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fic11_jilid1/data/data_sources/product_local_datasource.dart';
 import 'package:fic11_jilid1/data/data_sources/product_remote_datasource.dart';
 import 'package:fic11_jilid1/data/models/response/product_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,6 +14,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   ProductBloc(this.datasource) : super(const _Initial()) {
     on<_GetProduct>(_getProduct);
+    on<_GetLocal>(_getLocal);
     on<_GetByCategory>(_getByCategory);
   }
 
@@ -29,6 +31,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(_Success(product: product.data));
       },
     );
+  }
+
+  Future<void> _getLocal(
+    _GetLocal event,
+    Emitter<ProductState> emit,
+  ) async {
+    emit(const _Loading());
+    final localData = await ProductLocalDatasource.instance.getAllProduct();
+    products = localData;
+    emit(_Success(product: products));
   }
 
   Future<void> _getByCategory(

@@ -25,7 +25,7 @@ class ProductResponseModel {
 class Product {
   final int id;
   final String name;
-  final String description;
+  final String? description;
   final String price;
   final int stock;
   final String category;
@@ -34,7 +34,7 @@ class Product {
   Product({
     required this.id,
     required this.name,
-    required this.description,
+    this.description,
     required this.price,
     required this.stock,
     required this.category,
@@ -48,7 +48,16 @@ class Product {
   factory Product.fromMap(Map<String, dynamic> json) => Product(
         id: json["id"],
         name: json["name"],
-        description: json["description"],
+        description: json["description"] ?? '',
+        price: json["price"],
+        stock: json["stock"],
+        category: json["category"],
+        image: json["image"] ?? '',
+      );
+
+  factory Product.fromLocalMap(Map<String, dynamic> json) => Product(
+        id: json["id"],
+        name: json["name"],
         price: json["price"],
         stock: json["stock"],
         category: json["category"],
@@ -59,6 +68,15 @@ class Product {
         "id": id,
         "name": name,
         "description": description,
+        "price": price,
+        "stock": stock,
+        "category": category,
+        "image": image,
+      };
+
+  Map<String, dynamic> toLocalMap() => {
+        "id": id,
+        "name": name,
         "price": price,
         "stock": stock,
         "category": category,
