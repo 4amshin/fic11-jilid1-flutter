@@ -4,7 +4,6 @@ import 'package:fic11_jilid1/core/components/spaces.dart';
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
 import 'package:fic11_jilid1/presentation/manage/pages/manage_printer_page.dart';
 import 'package:fic11_jilid1/presentation/manage/widgets/logout_button.dart';
-import 'package:fic11_jilid1/presentation/manage/widgets/sync_button.dart';
 import 'package:flutter/material.dart';
 
 class ManageMenuPage extends StatelessWidget {
@@ -41,7 +40,6 @@ class ManageMenuPage extends StatelessWidget {
             const SpaceHeight(25),
             const LogoutButton(),
             const SpaceHeight(15),
-            const SyncButton(),
           ],
         ),
       ),

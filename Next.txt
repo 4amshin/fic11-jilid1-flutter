@@ -1,9 +1,1 @@
-Fitur Simpan data Product Ke lokal, mengambil dan menampilkan data BERHASIL
-Tetapi prosesnya masih manual, yaitu:
-    - GetProduct from API (Online)
-    - Sync Data (Menyimpan Data ke Offline)
-    - Mengganti Event pada BlocProvider dari getProduct menjadi getLocal
-    SEHARUSNYA Prosesnya Otomatis di Belakang Layar
-    - Cek Jika Online atau Offline
-        - Jika Online getProduct dari api, lalu sync data(simpan ke lokal)
-        - Jika Offline getLocal, tampilkan data dari local walapupun null/tidak ada.
+Fitur Online and Offline Data Telah Terimplementasi

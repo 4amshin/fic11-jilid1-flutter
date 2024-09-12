@@ -56,12 +56,10 @@ class ProductLocalDatasource {
       await db.insert(tableProducts, product.toLocalMap());
     }
 
-    // Fetch all products from the database to verify the insertions
-    final List<Map<String, dynamic>> allProducts =
-        await db.query(tableProducts);
-
     // Log the retrieved data
-    log('All Products in Local Storage: $allProducts');
+    // final List<Map<String, dynamic>> allProducts =
+    //     await db.query(tableProducts);
+    // log('All Products in Local Storage: $allProducts');
   }
 
   //get all product
