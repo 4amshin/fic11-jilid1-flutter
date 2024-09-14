@@ -1,6 +1,5 @@
 import 'package:fic11_jilid1/core/constants/colors.dart';
 import 'package:fic11_jilid1/data/data_sources/auth_local_datasource.dart';
-// import 'package:fic11_jilid1/core/fic_providers.dart';
 import 'package:fic11_jilid1/presentation/auth/login_page.dart';
 import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';

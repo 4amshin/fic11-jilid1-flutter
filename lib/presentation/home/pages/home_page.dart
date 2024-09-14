@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
   final ValueNotifier<int> _selectCategoryIndex = ValueNotifier(0);
   StreamSubscription? _internetConnection;
+  bool _isOnline = false;
 
   @override
   void initState() {
@@ -42,10 +43,12 @@ class _HomePageState extends State<HomePage> {
         InternetConnection().onStatusChange.listen((InternetStatus status) {
       switch (status) {
         case InternetStatus.connected:
+          _isOnline = true;
           log('Online');
           _fetchOnlineData();
           break;
         case InternetStatus.disconnected:
+          _isOnline = false;
           log('Offline');
           _fetchLocalData();
           break;
@@ -54,18 +57,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _fetchOnlineData() {
+    // Kirim event untuk mengambil data online
     context.read<ProductBloc>().add(const ProductEvent.getProduct());
 
-    //Listen to the state to save the data locally
+    // Buat listener yang hanya merespon event pengambilan data online
     context.read<ProductBloc>().stream.listen((state) async {
-      state.maybeWhen(
-        success: (data) async {
-          await ProductLocalDatasource.instance.removeAllProduct();
-          await ProductLocalDatasource.instance.insertAllProduct(data);
-          log('Data Saved to Local Storage');
-        },
-        orElse: () {},
-      );
+      if (_isOnline) {
+        state.maybeWhen(
+          success: (data) async {
+            // Hanya simpan data ke local storage jika pengambilan data online sukses
+            await ProductLocalDatasource.instance.removeAllProduct();
+            await ProductLocalDatasource.instance.insertAllProduct(data);
+            log('Data Saved to Local Storage');
+          },
+          orElse: () {},
+        );
+      }
     });
   }
 
