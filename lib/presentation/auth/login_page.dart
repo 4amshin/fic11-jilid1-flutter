@@ -79,55 +79,52 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: true,
           ),
           const SpaceHeight(24.0),
-          BlocProvider(
-            create: (context) => LoginBloc(AuthRemoteDatasource()),
-            child: BlocConsumer<LoginBloc, LoginState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: () {
-                    return Button.filled(
-                      onPressed: () {
-                        final input = LoginRequestModel(
-                          email: usernameController.text,
-                          password: passwordController.text,
-                        );
-                        context.read<LoginBloc>().add(
-                              LoginEvent.login(
-                                loginRequestModel: input,
-                              ),
-                            );
-                      },
-                      label: 'Masuk',
-                    );
-                  },
-                  loading: () {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                );
-              },
-              listener: (context, state) {
-                state.maybeWhen(
-                  success: (loginResponseModel) async {
-                    //Save User Token to Local Storage
-                    AuthLocalDatasource().saveAuthData(loginResponseModel);
+          BlocConsumer<LoginBloc, LoginState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  return Button.filled(
+                    onPressed: () {
+                      final input = LoginRequestModel(
+                        email: usernameController.text,
+                        password: passwordController.text,
+                      );
+                      context.read<LoginBloc>().add(
+                            LoginEvent.login(
+                              loginRequestModel: input,
+                            ),
+                          );
+                    },
+                    label: 'Masuk',
+                  );
+                },
+                loading: () {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+            },
+            listener: (context, state) {
+              state.maybeWhen(
+                success: (loginResponseModel) async {
+                  //Save User Token to Local Storage
+                  AuthLocalDatasource().saveAuthData(loginResponseModel);
 
-                    //Navigate to Dashboard Page
-                    context.pushReplacement(const DashboardPage());
-                  },
-                  error: (message) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  },
-                  orElse: () {},
-                );
-              },
-            ),
+                  //Navigate to Dashboard Page
+                  context.pushReplacement(const DashboardPage());
+                },
+                error: (message) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(message),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                },
+                orElse: () {},
+              );
+            },
           ),
         ],
       ),

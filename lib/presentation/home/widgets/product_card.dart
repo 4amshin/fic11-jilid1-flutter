@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fic11_jilid1/core/constants/variables.dart';
+import 'package:fic11_jilid1/core/extensions/int_ext.dart';
 import 'package:fic11_jilid1/data/models/response/product_response_model.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +59,8 @@ class ProductCard extends StatelessWidget {
           Text(
             data.name,
             style: const TextStyle(
+              overflow: TextOverflow.ellipsis,
+              height: 1,
               fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
@@ -78,7 +81,7 @@ class ProductCard extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  data.price,
+                  data.price.currencyFormatRp,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                   ),

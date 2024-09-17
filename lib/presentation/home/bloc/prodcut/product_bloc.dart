@@ -16,6 +16,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<_GetProduct>(_getProduct);
     on<_GetLocal>(_getLocal);
     on<_GetByCategory>(_getByCategory);
+    on<_AddProduct>(_addProduct);
   }
 
   Future<void> _getProduct(
@@ -54,5 +55,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
             .where((element) => element.category == event.category)
             .toList();
     emit(ProductState.success(product: newProducts));
+  }
+
+  Future<void> _addProduct(
+    _AddProduct event,
+    Emitter<ProductState> emit,
+  ) async {
+    emit(const _Loading());
+    final newProduct =
+        await ProductLocalDatasource.instance.insertProduct(event.product);
+    products.add(newProduct);
+    emit(ProductState.success(product: products));
   }
 }

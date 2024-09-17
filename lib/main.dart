@@ -1,4 +1,5 @@
 import 'package:fic11_jilid1/core/constants/colors.dart';
+import 'package:fic11_jilid1/core/fic_providers.dart';
 import 'package:fic11_jilid1/data/data_sources/auth_local_datasource.dart';
 import 'package:fic11_jilid1/presentation/auth/login_page.dart';
 import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
@@ -14,37 +15,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FIC11 Jilid1',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-        ),
-        useMaterial3: true,
-        textTheme: GoogleFonts.quicksandTextTheme(Theme.of(context).textTheme),
-        appBarTheme: AppBarTheme(
-          color: AppColors.white,
-          elevation: 0,
-          titleTextStyle: GoogleFonts.quicksand(
-            color: AppColors.primary,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+    return FicProviders(
+      child: MaterialApp(
+        title: 'FIC11 Jilid1',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: AppColors.primary,
           ),
-          iconTheme: const IconThemeData(
-            color: AppColors.primary,
+          useMaterial3: true,
+          textTheme:
+              GoogleFonts.quicksandTextTheme(Theme.of(context).textTheme),
+          appBarTheme: AppBarTheme(
+            color: AppColors.white,
+            elevation: 0,
+            titleTextStyle: GoogleFonts.quicksand(
+              color: AppColors.primary,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            iconTheme: const IconThemeData(
+              color: AppColors.primary,
+            ),
           ),
         ),
-      ),
-      home: FutureBuilder(
-        future: AuthLocalDatasource().isLogin(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data!) {
-            return const DashboardPage();
-          } else {
-            return const LoginPage();
-          }
-        },
+        home: FutureBuilder(
+          future: AuthLocalDatasource().isLogin(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data!) {
+              return const DashboardPage();
+            } else {
+              return const LoginPage();
+            }
+          },
+        ),
       ),
     );
   }

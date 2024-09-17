@@ -22,6 +22,7 @@ mixin _$ProductEvent {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
+    required TResult Function(Product product) addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$ProductEvent {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
+    TResult? Function(Product product)? addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$ProductEvent {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
+    TResult Function(Product product)? addProduct,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$ProductEvent {
     required TResult Function(_GetProduct value) getProduct,
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$ProductEvent {
     TResult? Function(_GetProduct value)? getProduct,
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$ProductEvent {
     TResult Function(_GetProduct value)? getProduct,
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +140,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
+    required TResult Function(Product product) addProduct,
   }) {
     return started();
   }
@@ -145,6 +152,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
+    TResult? Function(Product product)? addProduct,
   }) {
     return started?.call();
   }
@@ -156,6 +164,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
+    TResult Function(Product product)? addProduct,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -171,6 +180,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_GetProduct value) getProduct,
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
   }) {
     return started(this);
   }
@@ -182,6 +192,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_GetProduct value)? getProduct,
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
   }) {
     return started?.call(this);
   }
@@ -193,6 +204,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_GetProduct value)? getProduct,
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -251,6 +263,7 @@ class _$GetProductImpl implements _GetProduct {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
+    required TResult Function(Product product) addProduct,
   }) {
     return getProduct();
   }
@@ -262,6 +275,7 @@ class _$GetProductImpl implements _GetProduct {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
+    TResult? Function(Product product)? addProduct,
   }) {
     return getProduct?.call();
   }
@@ -273,6 +287,7 @@ class _$GetProductImpl implements _GetProduct {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
+    TResult Function(Product product)? addProduct,
     required TResult orElse(),
   }) {
     if (getProduct != null) {
@@ -288,6 +303,7 @@ class _$GetProductImpl implements _GetProduct {
     required TResult Function(_GetProduct value) getProduct,
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
   }) {
     return getProduct(this);
   }
@@ -299,6 +315,7 @@ class _$GetProductImpl implements _GetProduct {
     TResult? Function(_GetProduct value)? getProduct,
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
   }) {
     return getProduct?.call(this);
   }
@@ -310,6 +327,7 @@ class _$GetProductImpl implements _GetProduct {
     TResult Function(_GetProduct value)? getProduct,
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
     required TResult orElse(),
   }) {
     if (getProduct != null) {
@@ -396,6 +414,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
+    required TResult Function(Product product) addProduct,
   }) {
     return getByCategory(category);
   }
@@ -407,6 +426,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
+    TResult? Function(Product product)? addProduct,
   }) {
     return getByCategory?.call(category);
   }
@@ -418,6 +438,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
+    TResult Function(Product product)? addProduct,
     required TResult orElse(),
   }) {
     if (getByCategory != null) {
@@ -433,6 +454,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     required TResult Function(_GetProduct value) getProduct,
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
   }) {
     return getByCategory(this);
   }
@@ -444,6 +466,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult? Function(_GetProduct value)? getProduct,
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
   }) {
     return getByCategory?.call(this);
   }
@@ -455,6 +478,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult Function(_GetProduct value)? getProduct,
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
     required TResult orElse(),
   }) {
     if (getByCategory != null) {
@@ -522,6 +546,7 @@ class _$GetLocalImpl implements _GetLocal {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
+    required TResult Function(Product product) addProduct,
   }) {
     return getLocal();
   }
@@ -533,6 +558,7 @@ class _$GetLocalImpl implements _GetLocal {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
+    TResult? Function(Product product)? addProduct,
   }) {
     return getLocal?.call();
   }
@@ -544,6 +570,7 @@ class _$GetLocalImpl implements _GetLocal {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
+    TResult Function(Product product)? addProduct,
     required TResult orElse(),
   }) {
     if (getLocal != null) {
@@ -559,6 +586,7 @@ class _$GetLocalImpl implements _GetLocal {
     required TResult Function(_GetProduct value) getProduct,
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
   }) {
     return getLocal(this);
   }
@@ -570,6 +598,7 @@ class _$GetLocalImpl implements _GetLocal {
     TResult? Function(_GetProduct value)? getProduct,
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
   }) {
     return getLocal?.call(this);
   }
@@ -581,6 +610,7 @@ class _$GetLocalImpl implements _GetLocal {
     TResult Function(_GetProduct value)? getProduct,
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
     required TResult orElse(),
   }) {
     if (getLocal != null) {
@@ -592,6 +622,165 @@ class _$GetLocalImpl implements _GetLocal {
 
 abstract class _GetLocal implements ProductEvent {
   const factory _GetLocal() = _$GetLocalImpl;
+}
+
+/// @nodoc
+abstract class _$$AddProductImplCopyWith<$Res> {
+  factory _$$AddProductImplCopyWith(
+          _$AddProductImpl value, $Res Function(_$AddProductImpl) then) =
+      __$$AddProductImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Product product});
+}
+
+/// @nodoc
+class __$$AddProductImplCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$AddProductImpl>
+    implements _$$AddProductImplCopyWith<$Res> {
+  __$$AddProductImplCopyWithImpl(
+      _$AddProductImpl _value, $Res Function(_$AddProductImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = null,
+  }) {
+    return _then(_$AddProductImpl(
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddProductImpl implements _AddProduct {
+  const _$AddProductImpl({required this.product});
+
+  @override
+  final Product product;
+
+  @override
+  String toString() {
+    return 'ProductEvent.addProduct(product: $product)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddProductImpl &&
+            (identical(other.product, product) || other.product == product));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, product);
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddProductImplCopyWith<_$AddProductImpl> get copyWith =>
+      __$$AddProductImplCopyWithImpl<_$AddProductImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getProduct,
+    required TResult Function(String category) getByCategory,
+    required TResult Function() getLocal,
+    required TResult Function(Product product) addProduct,
+  }) {
+    return addProduct(product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getProduct,
+    TResult? Function(String category)? getByCategory,
+    TResult? Function()? getLocal,
+    TResult? Function(Product product)? addProduct,
+  }) {
+    return addProduct?.call(product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getProduct,
+    TResult Function(String category)? getByCategory,
+    TResult Function()? getLocal,
+    TResult Function(Product product)? addProduct,
+    required TResult orElse(),
+  }) {
+    if (addProduct != null) {
+      return addProduct(product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetProduct value) getProduct,
+    required TResult Function(_GetByCategory value) getByCategory,
+    required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
+  }) {
+    return addProduct(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetProduct value)? getProduct,
+    TResult? Function(_GetByCategory value)? getByCategory,
+    TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
+  }) {
+    return addProduct?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetProduct value)? getProduct,
+    TResult Function(_GetByCategory value)? getByCategory,
+    TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
+    required TResult orElse(),
+  }) {
+    if (addProduct != null) {
+      return addProduct(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddProduct implements ProductEvent {
+  const factory _AddProduct({required final Product product}) =
+      _$AddProductImpl;
+
+  Product get product;
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddProductImplCopyWith<_$AddProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

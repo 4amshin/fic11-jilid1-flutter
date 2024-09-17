@@ -1,14 +1,11 @@
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/constants/colors.dart';
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
-import 'package:fic11_jilid1/data/data_sources/product_remote_datasource.dart';
-import 'package:fic11_jilid1/presentation/home/bloc/prodcut/product_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/pages/home_page.dart';
 import 'package:fic11_jilid1/presentation/home/widgets/nav_item.dart';
 import 'package:fic11_jilid1/presentation/manage/pages/manage_menu_page.dart';
 import 'package:fic11_jilid1/presentation/order/pages/orders_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -21,10 +18,7 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    BlocProvider(
-      create: (context) => ProductBloc(ProductRemoteDatasource()),
-      child: const HomePage(),
-    ),
+    const HomePage(),
     const OrdersPage(),
     const Placeholder(),
     const ManageMenuPage()

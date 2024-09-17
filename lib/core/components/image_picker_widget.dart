@@ -87,16 +87,18 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                         ),
                 ),
               ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Button.filled(
-                  height: 30.0,
-                  width: 127.0,
-                  onPressed: _pickImage,
-                  label: 'Choose Photo',
-                  fontSize: 12.0,
-                  borderRadius: 5.0,
+              const SpaceWidth(20),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Button.filled(
+                    height: 30.0,
+                    // width: 150,
+                    onPressed: _pickImage,
+                    label: 'Choose Photo',
+                    fontSize: 12.0,
+                    borderRadius: 5.0,
+                  ),
                 ),
               ),
             ],

@@ -28,10 +28,13 @@ class ProductLocalDatasource {
       CREATE TABLE $tableProducts (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         name TEXT,
-        price TEXT,
+        description TEXT,
+        price INTEGER,
         stock INTEGER,
         image TEXT,
         category TEXT,
+        is_best_seller INTEGER,
+        is_sync INTEGER DEFAULT 0
       )
     ''');
   }
@@ -39,7 +42,7 @@ class ProductLocalDatasource {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('pos1.db');
+    _database = await _initDB('pos2.db');
     return _database!;
   }
 
@@ -57,9 +60,17 @@ class ProductLocalDatasource {
     }
 
     // Log the retrieved data
-    // final List<Map<String, dynamic>> allProducts =
-    //     await db.query(tableProducts);
-    // log('All Products in Local Storage: $allProducts');
+    final List<Map<String, dynamic>> allProducts =
+        await db.query(tableProducts);
+    log('All Products in Local Storage: $allProducts');
+  }
+
+  //insert single product
+  Future<Product> insertProduct(Product product) async {
+    final db = await instance.database;
+    log("${product.toMap()}");
+    int id = await db.insert(tableProducts, product.toMap());
+    return product.copyWith(id: id);
   }
 
   //get all product
