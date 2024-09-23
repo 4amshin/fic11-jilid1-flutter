@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:fic11_jilid1/data/data_sources/product_local_datasource.dart';
 import 'package:fic11_jilid1/data/data_sources/product_remote_datasource.dart';
+import 'package:fic11_jilid1/data/models/request/product_request_model.dart';
 import 'package:fic11_jilid1/data/models/response/product_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';
@@ -54,7 +58,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         : products
             .where((element) => element.category == event.category)
             .toList();
-    emit(ProductState.success(product: newProducts));
+    emit(_Success(product: newProducts));
   }
 
   Future<void> _addProduct(
@@ -62,9 +66,26 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     Emitter<ProductState> emit,
   ) async {
     emit(const _Loading());
-    final newProduct =
-        await ProductLocalDatasource.instance.insertProduct(event.product);
-    products.add(newProduct);
-    emit(ProductState.success(product: products));
+
+    final requestData = ProductRequestModel(
+      name: event.product.name,
+      price: event.product.price,
+      stock: event.product.stock,
+      category: event.product.category,
+      image: event.image,
+      isBestSeller: event.product.isBestSeller ? 1 : 0,
+    );
+
+    log("Sengin Request: ${requestData.toMap()}");
+    final response =
+        await datasource.addProduct(productRequestModel: requestData);
+    log("Response Status Code : $response");
+    response.fold(
+      (error) => emit(_Error(message: error)),
+      (success) {
+        products.add(success.data);
+        emit(_Success(product: products));
+      },
+    );
   }
 }

@@ -28,13 +28,11 @@ class ProductLocalDatasource {
       CREATE TABLE $tableProducts (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         name TEXT,
-        description TEXT,
         price INTEGER,
         stock INTEGER,
         image TEXT,
         category TEXT,
-        is_best_seller INTEGER,
-        is_sync INTEGER DEFAULT 0
+        is_best_seller INTEGER
       )
     ''');
   }
@@ -42,7 +40,7 @@ class ProductLocalDatasource {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('pos2.db');
+    _database = await _initDB('pos1.db');
     return _database!;
   }
 

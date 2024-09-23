@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fic11_jilid1/core/components/buttons.dart';
 import 'package:fic11_jilid1/core/components/custom_dropdown.dart';
 import 'package:fic11_jilid1/core/components/custom_text_field.dart';
@@ -11,6 +9,7 @@ import 'package:fic11_jilid1/presentation/home/bloc/prodcut/product_bloc.dart';
 import 'package:fic11_jilid1/presentation/manage/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProductPage extends StatefulWidget {
   const AddProductPage({super.key});
@@ -26,7 +25,7 @@ class _AddProductPageState extends State<AddProductPage> {
 
   String category = 'food';
 
-  File? imageFile;
+  XFile? imageFile;
 
   bool isBestSeller = false;
 
@@ -154,13 +153,15 @@ class _AddProductPageState extends State<AddProductPage> {
                             stock: stock,
                             category: category,
                             isBestSeller: isBestSeller,
-                            image: imageFile!.absolute.path,
-                            isSync: false,
+                            image: imageFile!.path,
                           );
 
                           context
                               .read<ProductBloc>()
-                              .add(ProductEvent.addProduct(product: product));
+                              .add(ProductEvent.addProduct(
+                                product: product,
+                                image: imageFile!,
+                              ));
                         },
                         label: 'Simpan',
                       ),

@@ -22,7 +22,7 @@ mixin _$ProductEvent {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
-    required TResult Function(Product product) addProduct,
+    required TResult Function(Product product, XFile image) addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +31,7 @@ mixin _$ProductEvent {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
-    TResult? Function(Product product)? addProduct,
+    TResult? Function(Product product, XFile image)? addProduct,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +40,7 @@ mixin _$ProductEvent {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
-    TResult Function(Product product)? addProduct,
+    TResult Function(Product product, XFile image)? addProduct,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,7 +140,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
-    required TResult Function(Product product) addProduct,
+    required TResult Function(Product product, XFile image) addProduct,
   }) {
     return started();
   }
@@ -152,7 +152,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
-    TResult? Function(Product product)? addProduct,
+    TResult? Function(Product product, XFile image)? addProduct,
   }) {
     return started?.call();
   }
@@ -164,7 +164,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
-    TResult Function(Product product)? addProduct,
+    TResult Function(Product product, XFile image)? addProduct,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -263,7 +263,7 @@ class _$GetProductImpl implements _GetProduct {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
-    required TResult Function(Product product) addProduct,
+    required TResult Function(Product product, XFile image) addProduct,
   }) {
     return getProduct();
   }
@@ -275,7 +275,7 @@ class _$GetProductImpl implements _GetProduct {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
-    TResult? Function(Product product)? addProduct,
+    TResult? Function(Product product, XFile image)? addProduct,
   }) {
     return getProduct?.call();
   }
@@ -287,7 +287,7 @@ class _$GetProductImpl implements _GetProduct {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
-    TResult Function(Product product)? addProduct,
+    TResult Function(Product product, XFile image)? addProduct,
     required TResult orElse(),
   }) {
     if (getProduct != null) {
@@ -414,7 +414,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
-    required TResult Function(Product product) addProduct,
+    required TResult Function(Product product, XFile image) addProduct,
   }) {
     return getByCategory(category);
   }
@@ -426,7 +426,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
-    TResult? Function(Product product)? addProduct,
+    TResult? Function(Product product, XFile image)? addProduct,
   }) {
     return getByCategory?.call(category);
   }
@@ -438,7 +438,7 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
-    TResult Function(Product product)? addProduct,
+    TResult Function(Product product, XFile image)? addProduct,
     required TResult orElse(),
   }) {
     if (getByCategory != null) {
@@ -546,7 +546,7 @@ class _$GetLocalImpl implements _GetLocal {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
-    required TResult Function(Product product) addProduct,
+    required TResult Function(Product product, XFile image) addProduct,
   }) {
     return getLocal();
   }
@@ -558,7 +558,7 @@ class _$GetLocalImpl implements _GetLocal {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
-    TResult? Function(Product product)? addProduct,
+    TResult? Function(Product product, XFile image)? addProduct,
   }) {
     return getLocal?.call();
   }
@@ -570,7 +570,7 @@ class _$GetLocalImpl implements _GetLocal {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
-    TResult Function(Product product)? addProduct,
+    TResult Function(Product product, XFile image)? addProduct,
     required TResult orElse(),
   }) {
     if (getLocal != null) {
@@ -630,7 +630,7 @@ abstract class _$$AddProductImplCopyWith<$Res> {
           _$AddProductImpl value, $Res Function(_$AddProductImpl) then) =
       __$$AddProductImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Product product});
+  $Res call({Product product, XFile image});
 }
 
 /// @nodoc
@@ -647,12 +647,17 @@ class __$$AddProductImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = null,
+    Object? image = freezed,
   }) {
     return _then(_$AddProductImpl(
       product: null == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as Product,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as XFile,
     ));
   }
 }
@@ -660,14 +665,16 @@ class __$$AddProductImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddProductImpl implements _AddProduct {
-  const _$AddProductImpl({required this.product});
+  const _$AddProductImpl({required this.product, required this.image});
 
   @override
   final Product product;
+  @override
+  final XFile image;
 
   @override
   String toString() {
-    return 'ProductEvent.addProduct(product: $product)';
+    return 'ProductEvent.addProduct(product: $product, image: $image)';
   }
 
   @override
@@ -675,11 +682,13 @@ class _$AddProductImpl implements _AddProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddProductImpl &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.product, product) || other.product == product) &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product);
+  int get hashCode => Object.hash(
+      runtimeType, product, const DeepCollectionEquality().hash(image));
 
   /// Create a copy of ProductEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -696,9 +705,9 @@ class _$AddProductImpl implements _AddProduct {
     required TResult Function() getProduct,
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
-    required TResult Function(Product product) addProduct,
+    required TResult Function(Product product, XFile image) addProduct,
   }) {
-    return addProduct(product);
+    return addProduct(product, image);
   }
 
   @override
@@ -708,9 +717,9 @@ class _$AddProductImpl implements _AddProduct {
     TResult? Function()? getProduct,
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
-    TResult? Function(Product product)? addProduct,
+    TResult? Function(Product product, XFile image)? addProduct,
   }) {
-    return addProduct?.call(product);
+    return addProduct?.call(product, image);
   }
 
   @override
@@ -720,11 +729,11 @@ class _$AddProductImpl implements _AddProduct {
     TResult Function()? getProduct,
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
-    TResult Function(Product product)? addProduct,
+    TResult Function(Product product, XFile image)? addProduct,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
-      return addProduct(product);
+      return addProduct(product, image);
     }
     return orElse();
   }
@@ -771,10 +780,12 @@ class _$AddProductImpl implements _AddProduct {
 }
 
 abstract class _AddProduct implements ProductEvent {
-  const factory _AddProduct({required final Product product}) =
-      _$AddProductImpl;
+  const factory _AddProduct(
+      {required final Product product,
+      required final XFile image}) = _$AddProductImpl;
 
   Product get product;
+  XFile get image;
 
   /// Create a copy of ProductEvent
   /// with the given fields replaced by the non-null parameter values.

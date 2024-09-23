@@ -10,5 +10,6 @@ class ProductEvent with _$ProductEvent {
   const factory ProductEvent.getLocal() = _GetLocal;
   const factory ProductEvent.addProduct({
     required Product product,
+    required XFile image,
   }) = _AddProduct;
 }
