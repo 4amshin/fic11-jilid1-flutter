@@ -1,3 +1,4 @@
+import 'package:fic11_jilid1/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/bloc/prodcut/product_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/widgets/product_card.dart';
 import 'package:fic11_jilid1/presentation/home/widgets/product_empty.dart';
@@ -31,7 +32,9 @@ class ProductList extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) => ProductCard(
                   data: product[index],
-                  onCartButton: () {},
+                  onCartButton: () => context
+                      .read<CheckoutBloc>()
+                      .add(CheckoutEvent.addCheckout(product: product[index])),
                 ),
               );
             });
