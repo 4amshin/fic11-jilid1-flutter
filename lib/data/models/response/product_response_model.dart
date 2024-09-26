@@ -111,4 +111,28 @@ class Product {
       isBestSeller: isBestSeller ?? this.isBestSeller,
     );
   }
+
+  @override
+  bool operator ==(covariant Product other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.price == price &&
+        other.stock == stock &&
+        other.category == category &&
+        other.image == image &&
+        other.isBestSeller == isBestSeller;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        price.hashCode ^
+        stock.hashCode ^
+        category.hashCode ^
+        image.hashCode ^
+        isBestSeller.hashCode;
+  }
 }
