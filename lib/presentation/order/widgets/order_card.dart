@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fic11_jilid1/core/constants/variables.dart';
+import 'package:fic11_jilid1/core/extensions/int_ext.dart';
+import 'package:fic11_jilid1/presentation/home/bloc/checkout/checkout_bloc.dart';
+import 'package:fic11_jilid1/presentation/home/models/order_item.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/components/spaces.dart';
 import '../../../core/constants/colors.dart';
-import '../models/order_model.dart';
 
 class OrderCard extends StatelessWidget {
-  final OrderModel data;
+  final OrderItem data;
   final VoidCallback onDeleteTap;
   final EdgeInsetsGeometry? padding;
 
@@ -36,11 +40,17 @@ class OrderCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-                child: Image.asset(
-                  data.image,
+                child: CachedNetworkImage(
                   width: 76,
                   height: 76,
                   fit: BoxFit.cover,
+                  imageUrl: '${Variables.imageUrl}${data.product.image}',
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.food_bank_outlined,
+                    size: 80,
+                  ),
                 ),
               ),
               const SpaceWidth(24.0),
@@ -52,13 +62,13 @@ class OrderCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          data.name,
+                          data.product.name,
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                         Text(
-                          data.priceFormat,
+                          data.product.price.currencyFormatRp,
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                           ),
@@ -72,8 +82,10 @@ class OrderCard extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               if (data.quantity > 1) {
-                                data.quantity--;
-                                setState(() {});
+                                context.read<CheckoutBloc>().add(
+                                    CheckoutEvent.removeCheckout(
+                                        product: data.product));
+                                onDeleteTap();
                               }
                             },
                             child: Container(
@@ -92,8 +104,10 @@ class OrderCard extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              data.quantity++;
-                              setState(() {});
+                              context.read<CheckoutBloc>().add(
+                                  CheckoutEvent.addCheckout(
+                                      product: data.product));
+                              onDeleteTap();
                             },
                             child: Container(
                               color: AppColors.white,

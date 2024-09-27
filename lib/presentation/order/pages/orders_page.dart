@@ -1,40 +1,43 @@
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/components/menu_button.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
-import 'package:fic11_jilid1/presentation/order/models/order_model.dart';
+import 'package:fic11_jilid1/presentation/home/bloc/checkout/checkout_bloc.dart';
+import 'package:fic11_jilid1/presentation/home/models/order_item.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/order_card.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/payment_cash_dialog.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/payment_qris_dialog.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/process_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OrdersPage extends StatelessWidget {
+class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final indexValue = ValueNotifier(0);
-    const paddingHorizontal = EdgeInsets.symmetric(horizontal: 16.0);
-    final List<OrderModel> orders = [
-      OrderModel(
-        image: Assets.images.f1.path,
-        name: 'Nutty Oat Latte',
-        price: 39000,
-      ),
-      OrderModel(
-        image: Assets.images.f2.path,
-        name: 'Iced Latte',
-        price: 24000,
-      ),
-    ];
+  State<OrdersPage> createState() => _OrdersPageState();
+}
 
-    int calculateTotalPrice(List<OrderModel> orders) {
-      int totalPrice = 0;
-      for (final order in orders) {
-        totalPrice += order.price;
-      }
-      return totalPrice;
-    }
+class _OrdersPageState extends State<OrdersPage> {
+  final indexValue = ValueNotifier(0);
+
+  List<OrderItem> orders = [];
+
+  int totalPrice = 0;
+  int calculateTotalPrice(List<OrderItem> orders) {
+    return orders.fold(
+        0,
+        (previousValue, element) =>
+            previousValue + element.product.price * element.quantity);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const paddingHorizontal = EdgeInsets.symmetric(horizontal: 16.0);
 
     return Scaffold(
       appBar: AppBar(
@@ -47,20 +50,29 @@ class OrdersPage extends StatelessWidget {
           ),
         ],
       ),
-      body: StatefulBuilder(
-        builder: (context, setState) => ListView.separated(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          itemCount: orders.length,
-          separatorBuilder: (context, index) => const SpaceHeight(20.0),
-          itemBuilder: (context, index) => OrderCard(
-            padding: paddingHorizontal,
-            data: orders[index],
-            onDeleteTap: () {
-              orders.removeAt(index);
-              setState(() {});
-            },
-          ),
-        ),
+      body: BlocBuilder<CheckoutBloc, CheckoutState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+              orElse: () => const Center(child: Text('No Data')),
+              success: (data, quantity, totalPrice) {
+                if (data.isEmpty) {
+                  return const Center(child: Text('No Data'));
+                }
+                return ListView.separated(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  itemCount: data.length,
+                  separatorBuilder: (context, index) => const SpaceHeight(20.0),
+                  itemBuilder: (context, index) => OrderCard(
+                    padding: paddingHorizontal,
+                    data: data[index],
+                    onDeleteTap: () {
+                      // orders.removeAt(index);
+                      // setState(() {});
+                    },
+                  ),
+                );
+              });
+        },
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
