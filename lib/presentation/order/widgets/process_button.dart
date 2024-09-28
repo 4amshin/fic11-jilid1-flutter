@@ -1,16 +1,16 @@
 import 'package:fic11_jilid1/core/extensions/int_ext.dart';
+import 'package:fic11_jilid1/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/components/spaces.dart';
 import '../../../core/constants/colors.dart';
 
 class ProcessButton extends StatelessWidget {
-  final int price;
   final VoidCallback onPressed;
 
   const ProcessButton({
     super.key,
-    required this.price,
     required this.onPressed,
   });
 
@@ -26,13 +26,28 @@ class ProcessButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(
-              price.currencyFormatRp,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
+            BlocBuilder<CheckoutBloc, CheckoutState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                    orElse: () => const Text(
+                          '0',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                    success: (data, quantity, totalPrice) {
+                      return Text(
+                        totalPrice.currencyFormatRp,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      );
+                    });
+              },
             ),
             const Spacer(),
             const Text(

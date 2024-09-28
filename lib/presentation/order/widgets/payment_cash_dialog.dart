@@ -9,13 +9,29 @@ import '../../../core/components/spaces.dart';
 import '../../../core/constants/colors.dart';
 import 'payment_success_dialog.dart';
 
-class PaymentCashDialog extends StatelessWidget {
+class PaymentCashDialog extends StatefulWidget {
   final int price;
-  const PaymentCashDialog({super.key, required this.price});
+  const PaymentCashDialog({
+    super.key,
+    required this.price,
+  });
+
+  @override
+  State<PaymentCashDialog> createState() => _PaymentCashDialogState();
+}
+
+class _PaymentCashDialogState extends State<PaymentCashDialog> {
+  TextEditingController? priceController;
+
+  @override
+  void initState() {
+    priceController =
+        TextEditingController(text: widget.price.currencyFormatRp);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final priceController = TextEditingController(text: price.currencyFormatRp);
     return AlertDialog(
       scrollable: true,
       title: Stack(
@@ -44,46 +60,46 @@ class PaymentCashDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SpaceHeight(16.0),
+          // const SpaceHeight(16.0),
           CustomTextField(
-            controller: priceController,
+            controller: priceController!,
             label: '',
             showLabel: false,
             keyboardType: TextInputType.number,
             onChanged: (value) {
               final int priceValue = value.toIntegerFromText;
-              priceController.text = priceValue.currencyFormatRp;
-              priceController.selection = TextSelection.fromPosition(
-                  TextPosition(offset: priceController.text.length));
+              priceController!.text = priceValue.currencyFormatRp;
+              priceController!.selection = TextSelection.fromPosition(
+                  TextPosition(offset: priceController!.text.length));
             },
           ),
           const SpaceHeight(16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Button.filled(
-                onPressed: () {},
-                label: 'Uang Pas',
-                disabled: true,
-                textColor: AppColors.primary,
-                fontSize: 13.0,
-                width: 112.0,
-                height: 50.0,
-              ),
-              const SpaceWidth(4.0),
-              Flexible(
-                child: Button.filled(
-                  onPressed: () {},
-                  label: price.currencyFormatRp,
-                  disabled: true,
-                  textColor: AppColors.primary,
-                  fontSize: 13.0,
-                  height: 50.0,
-                ),
-              ),
-            ],
-          ),
-          const SpaceHeight(30.0),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Button.filled(
+          //       onPressed: () {},
+          //       label: 'Uang Pas',
+          //       disabled: true,
+          //       textColor: AppColors.primary,
+          //       fontSize: 13.0,
+          //       width: 112.0,
+          //       height: 50.0,
+          //     ),
+          //     const SpaceWidth(4.0),
+          //     Flexible(
+          //       child: Button.filled(
+          //         onPressed: () {},
+          //         label: widget.price.currencyFormatRp,
+          //         disabled: true,
+          //         textColor: AppColors.primary,
+          //         fontSize: 13.0,
+          //         height: 50.0,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // const SpaceHeight(30.0),
           Button.filled(
             onPressed: () {
               context.pop();

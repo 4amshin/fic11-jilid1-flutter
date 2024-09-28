@@ -54,10 +54,11 @@ class _OrdersPageState extends State<OrdersPage> {
         builder: (context, state) {
           return state.maybeWhen(
               orElse: () => const Center(child: Text('No Data')),
-              success: (data, quantity, totalPrice) {
+              success: (data, quantity, total) {
                 if (data.isEmpty) {
                   return const Center(child: Text('No Data'));
                 }
+                totalPrice = total;
                 return ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   itemCount: data.length,
@@ -103,14 +104,13 @@ class _OrdersPageState extends State<OrdersPage> {
             ),
             const SpaceHeight(20.0),
             ProcessButton(
-              price: 123000,
               onPressed: () async {
                 if (indexValue.value == 0) {
                 } else if (indexValue.value == 1) {
                   showDialog(
                     context: context,
                     builder: (context) => PaymentCashDialog(
-                      price: calculateTotalPrice(orders),
+                      price: totalPrice,
                     ),
                   );
                 } else if (indexValue.value == 2) {
