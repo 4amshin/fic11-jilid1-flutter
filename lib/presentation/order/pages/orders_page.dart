@@ -3,6 +3,7 @@ import 'package:fic11_jilid1/core/components/menu_button.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
 import 'package:fic11_jilid1/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/models/order_item.dart';
+import 'package:fic11_jilid1/presentation/order/bloc/order/order_bloc.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/order_card.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/payment_cash_dialog.dart';
 import 'package:fic11_jilid1/presentation/order/widgets/payment_qris_dialog.dart';
@@ -59,6 +60,7 @@ class _OrdersPageState extends State<OrdersPage> {
                   return const Center(child: Text('No Data'));
                 }
                 totalPrice = total;
+                orders = data;
                 return ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   itemCount: data.length,
@@ -80,27 +82,45 @@ class _OrdersPageState extends State<OrdersPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ValueListenableBuilder(
-              valueListenable: indexValue,
-              builder: (context, value, _) => Row(
-                children: [
-                  const SpaceWidth(10.0),
-                  MenuButton(
-                    iconPath: Assets.icons.cash.path,
-                    label: 'Tunai',
-                    isActive: value == 1,
-                    onPressed: () => indexValue.value = 1,
-                  ),
-                  const SpaceWidth(10.0),
-                  MenuButton(
-                    iconPath: Assets.icons.qrCode.path,
-                    label: 'QRIS',
-                    isActive: value == 2,
-                    onPressed: () => indexValue.value = 2,
-                  ),
-                  const SpaceWidth(10.0),
-                ],
-              ),
+            BlocBuilder<OrderBloc, OrderState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => const SizedBox.shrink(),
+                  success: (products, totalQuantity, totalPrice, paymentMethod,
+                      nominalBayar, idKasir, namaKasir) {
+                    return ValueListenableBuilder(
+                      valueListenable: indexValue,
+                      builder: (context, value, _) => Row(
+                        children: [
+                          const SpaceWidth(10.0),
+                          MenuButton(
+                            iconPath: Assets.icons.cash.path,
+                            label: 'Tunai',
+                            isActive: value == 1,
+                            onPressed: () {
+                              indexValue.value = 1;
+                              context
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.addPaymentMethod(
+                                    paymentMethod: 'Tunai',
+                                    orders: orders,
+                                  ));
+                            },
+                          ),
+                          const SpaceWidth(10.0),
+                          MenuButton(
+                            iconPath: Assets.icons.qrCode.path,
+                            label: 'QRIS',
+                            isActive: value == 2,
+                            onPressed: () => indexValue.value = 2,
+                          ),
+                          const SpaceWidth(10.0),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
             const SpaceHeight(20.0),
             ProcessButton(
