@@ -43,7 +43,6 @@ class PaymentSuccessDialog extends StatelessWidget {
             success: (products, totalQuantity, totalPrice, paymentMethod,
                 nominalBayar, idKasir, namaKasir) {
               context.read<CheckoutBloc>().add(const CheckoutEvent.started());
-              context.read<OrderBloc>().add(const OrderEvent.started());
               log("Total: $totalPrice");
               return Column(
                 mainAxisSize: MainAxisSize.min,

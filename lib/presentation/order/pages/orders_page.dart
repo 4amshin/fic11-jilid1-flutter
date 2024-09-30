@@ -32,11 +32,6 @@ class _OrdersPageState extends State<OrdersPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     const paddingHorizontal = EdgeInsets.symmetric(horizontal: 16.0);
 
