@@ -5,4 +5,16 @@ HANYA DATA DRINK YANG TAMPIL DAN YANG LAIN NYA TIDAK
 - PERBAIKI LOGIKA getByCategory
 - BUAT FITUR REFRESH, YANG AKAN MENGEKSEKUIS GETPRODUCT
 =============================
-LANJUT KE MIDTRANS
+Selanjutnya terkati Save fungsi saveMidtransServerKey
+yang mana pada kode pak bari alurnyaadalah
+1. klik tombol qris server key yang akan membuka halaman save_Erver_key_page
+2. dihalaman ini terdapat tombol save server key.
+
+nah tugas selanjutnya adalah,
+lakukan saveMidtransServerKey secara otomatis
+midtransServerKey kan unik setiap user mditrasn
+jadi kenapa tidak input manual saja melaui profil page 
+jadi buatkan halaman profile page yang dimana jiga owner  dan admin
+maka terdapat input tambahan untuk kode server midtransServerKey
+
+atau cari metode lain dari GPT

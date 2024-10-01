@@ -44,4 +44,15 @@ class AuthLocalDatasource {
     final authData = LoginResponseModel.fromRawJson(authJson);
     return authData.id;
   }
+
+  Future<void> saveMidtransServerKey(String serverKey) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString('server_key', serverKey);
+  }
+
+  Future<String> getMidtransServerKey() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final serverKey = pref.getString('server_key');
+    return serverKey ?? '';
+  }
 }
