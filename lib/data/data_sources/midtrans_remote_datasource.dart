@@ -18,7 +18,7 @@ class MidtransRemoteDatasource {
     required int grossAmount,
   }) async {
     // final serverKey = await AuthLocalDatasource().getMidtransServerKey();
-    final serverKey = 'SB-Mid-server-F1B2xE-82Th76qSWECE-1jjw';
+    const serverKey = 'SB-Mid-server-F1B2xE-82Th76qSWECE-1jjw';
 
     final headers = {
       'Accept': 'application/json',

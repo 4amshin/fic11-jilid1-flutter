@@ -34,6 +34,7 @@ class QrisBloc extends Bloc<QrisEvent, QrisState> {
   ) async {
     final response = await midtransRemoteDatasource.checkPaymentStatus(
         orderId: event.orderId);
+        
     if (response.transactionStatus == 'settlement') {
       emit(const _Success(message: 'Pembayaran Berhasil'));
     }
