@@ -1,11 +1,79 @@
+import 'dart:async';
+
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
+import 'package:fic11_jilid1/data/data_sources/product_local_datasource.dart';
+import 'package:fic11_jilid1/presentation/order/bloc/order/order_bloc.dart';
+import 'package:fic11_jilid1/presentation/order/bloc/qris/qris_bloc.dart';
+import 'package:fic11_jilid1/presentation/order/models/order_model.dart';
+import 'package:fic11_jilid1/presentation/order/widgets/payment_success_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/components/spaces.dart';
 import '../../../core/constants/colors.dart';
 
-class PaymentQrisDialog extends StatelessWidget {
-  const PaymentQrisDialog({super.key});
+class PaymentQrisDialog extends StatefulWidget {
+  final int price;
+  const PaymentQrisDialog({
+    super.key,
+    required this.price,
+  });
+
+  @override
+  State<PaymentQrisDialog> createState() => _PaymentQrisDialogState();
+}
+
+class _PaymentQrisDialogState extends State<PaymentQrisDialog> {
+  String orderId = '';
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeOrder();
+  }
+
+  void _initializeOrder() {
+    orderId = _generateOrderId();
+    _generateQRCode(orderId, widget.price);
+  }
+
+  String _generateOrderId() {
+    return DateTime.now().millisecondsSinceEpoch.toString();
+  }
+
+  void _generateQRCode(String orderId, int price) {
+    context.read<QrisBloc>().add(
+          QrisEvent.generateQRCode(
+            orderId: orderId,
+            grossAmount: price,
+          ),
+        );
+  }
+
+  void _startPaymentStatusCheck() {
+    const checkInterval = Duration(seconds: 5);
+    timer = Timer.periodic(checkInterval, (timer) {
+      context
+          .read<QrisBloc>()
+          .add(QrisEvent.checkPaymentStatus(orderId: orderId));
+    });
+  }
+
+  void _onPaymentSuccess(OrderModel orderModel) {
+    timer?.cancel();
+    ProductLocalDatasource.instance.saveOrder(orderModel);
+    context.pop();
+    _showSuccessDialog();
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => const PaymentSuccessDialog(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,34 +98,111 @@ class PaymentQrisDialog extends StatelessWidget {
             ),
           ),
           const SpaceHeight(6.0),
-          Container(
-            width: context.deviceWidth,
-            padding: const EdgeInsets.all(14.0),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-              color: AppColors.white,
-            ),
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // SizedBox(
-                //   width: 256.0,
-                //   height: 256.0,
-                //   child: QrImageView(
-                //     data: 's.id/batch11',
-                //     version: QrVersions.auto,
-                //   ),
-                // ),
-                SpaceHeight(5.0),
-                Text(
-                  'Scan QRIS untuk melakukan pembayaran',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
+          BlocBuilder<OrderBloc, OrderState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => const Center(child: CircularProgressIndicator()),
+                success: (products, totalQuantity, totalPrice, paymentMethod,
+                    nominalBayar, idKasir, namaKasir) {
+                  return Container(
+                    width: context.deviceWidth,
+                    padding: const EdgeInsets.all(14.0),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      color: AppColors.white,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BlocListener<QrisBloc, QrisState>(
+                          listener: (context, state) {
+                            state.maybeWhen(
+                                orElse: () {},
+                                qrisResponse: (data) {
+                                  const onSec = Duration(seconds: 5);
+                                  timer = Timer.periodic(onSec, (timer) {
+                                    context
+                                        .read<QrisBloc>()
+                                        .add(QrisEvent.checkPaymentStatus(
+                                          orderId: orderId,
+                                        ));
+                                  });
+                                },
+                                success: (message) {
+                                  timer?.cancel();
+                                  final orderModel = OrderModel(
+                                    paymentMethod: paymentMethod,
+                                    nominalBayar: nominalBayar,
+                                    orders: products,
+                                    totalQuantity: totalQuantity,
+                                    totalPrice: totalPrice,
+                                    idKasir: idKasir,
+                                    namaKasir: namaKasir,
+                                    isSync: false,
+                                    transactionTime:
+                                        DateFormat('yyyy-MM-ddTHH:mm:ss')
+                                            .format(DateTime.now()),
+                                  );
+
+                                  ProductLocalDatasource.instance
+                                      .saveOrder(orderModel);
+
+                                  context.pop();
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        const PaymentSuccessDialog(),
+                                  );
+                                });
+                          },
+                          child: BlocBuilder<QrisBloc, QrisState>(
+                            builder: (context, state) {
+                              return state.maybeWhen(
+                                orElse: () => const SizedBox(),
+                                qrisResponse: (data) {
+                                  return Container(
+                                    width: 256.0,
+                                    height: 256.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+                                      child: Image.network(
+                                        data.actions!.first.url!,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                loading: () => Container(
+                                  width: 256.0,
+                                  height: 256.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    color: Colors.white,
+                                  ),
+                                  child: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SpaceHeight(5.0),
+                        const Text(
+                          'Scan QRIS untuk melakukan pembayaran',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
