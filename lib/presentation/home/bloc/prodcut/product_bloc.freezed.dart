@@ -23,6 +23,8 @@ mixin _$ProductEvent {
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
     required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$ProductEvent {
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
     TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$ProductEvent {
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
     TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +57,8 @@ mixin _$ProductEvent {
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
     required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +68,8 @@ mixin _$ProductEvent {
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
     TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +79,8 @@ mixin _$ProductEvent {
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
     TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +153,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
     required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
   }) {
     return started();
   }
@@ -153,6 +167,8 @@ class _$StartedImpl implements _Started {
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
     TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
   }) {
     return started?.call();
   }
@@ -165,6 +181,8 @@ class _$StartedImpl implements _Started {
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
     TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -181,6 +199,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
     required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
   }) {
     return started(this);
   }
@@ -193,6 +213,8 @@ class _$StartedImpl implements _Started {
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
     TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
   }) {
     return started?.call(this);
   }
@@ -205,6 +227,8 @@ class _$StartedImpl implements _Started {
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
     TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -264,6 +288,8 @@ class _$GetProductImpl implements _GetProduct {
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
     required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
   }) {
     return getProduct();
   }
@@ -276,6 +302,8 @@ class _$GetProductImpl implements _GetProduct {
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
     TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
   }) {
     return getProduct?.call();
   }
@@ -288,6 +316,8 @@ class _$GetProductImpl implements _GetProduct {
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
     TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (getProduct != null) {
@@ -304,6 +334,8 @@ class _$GetProductImpl implements _GetProduct {
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
     required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
   }) {
     return getProduct(this);
   }
@@ -316,6 +348,8 @@ class _$GetProductImpl implements _GetProduct {
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
     TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
   }) {
     return getProduct?.call(this);
   }
@@ -328,6 +362,8 @@ class _$GetProductImpl implements _GetProduct {
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
     TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (getProduct != null) {
@@ -415,6 +451,8 @@ class _$GetByCategoryImpl implements _GetByCategory {
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
     required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
   }) {
     return getByCategory(category);
   }
@@ -427,6 +465,8 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
     TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
   }) {
     return getByCategory?.call(category);
   }
@@ -439,6 +479,8 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
     TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (getByCategory != null) {
@@ -455,6 +497,8 @@ class _$GetByCategoryImpl implements _GetByCategory {
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
     required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
   }) {
     return getByCategory(this);
   }
@@ -467,6 +511,8 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
     TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
   }) {
     return getByCategory?.call(this);
   }
@@ -479,6 +525,8 @@ class _$GetByCategoryImpl implements _GetByCategory {
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
     TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (getByCategory != null) {
@@ -547,6 +595,8 @@ class _$GetLocalImpl implements _GetLocal {
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
     required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
   }) {
     return getLocal();
   }
@@ -559,6 +609,8 @@ class _$GetLocalImpl implements _GetLocal {
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
     TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
   }) {
     return getLocal?.call();
   }
@@ -571,6 +623,8 @@ class _$GetLocalImpl implements _GetLocal {
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
     TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (getLocal != null) {
@@ -587,6 +641,8 @@ class _$GetLocalImpl implements _GetLocal {
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
     required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
   }) {
     return getLocal(this);
   }
@@ -599,6 +655,8 @@ class _$GetLocalImpl implements _GetLocal {
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
     TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
   }) {
     return getLocal?.call(this);
   }
@@ -611,6 +669,8 @@ class _$GetLocalImpl implements _GetLocal {
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
     TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (getLocal != null) {
@@ -705,6 +765,8 @@ class _$AddProductImpl implements _AddProduct {
     required TResult Function(String category) getByCategory,
     required TResult Function() getLocal,
     required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
   }) {
     return addProduct(product, image);
   }
@@ -717,6 +779,8 @@ class _$AddProductImpl implements _AddProduct {
     TResult? Function(String category)? getByCategory,
     TResult? Function()? getLocal,
     TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
   }) {
     return addProduct?.call(product, image);
   }
@@ -729,6 +793,8 @@ class _$AddProductImpl implements _AddProduct {
     TResult Function(String category)? getByCategory,
     TResult Function()? getLocal,
     TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -745,6 +811,8 @@ class _$AddProductImpl implements _AddProduct {
     required TResult Function(_GetByCategory value) getByCategory,
     required TResult Function(_GetLocal value) getLocal,
     required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
   }) {
     return addProduct(this);
   }
@@ -757,6 +825,8 @@ class _$AddProductImpl implements _AddProduct {
     TResult? Function(_GetByCategory value)? getByCategory,
     TResult? Function(_GetLocal value)? getLocal,
     TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
   }) {
     return addProduct?.call(this);
   }
@@ -769,6 +839,8 @@ class _$AddProductImpl implements _AddProduct {
     TResult Function(_GetByCategory value)? getByCategory,
     TResult Function(_GetLocal value)? getLocal,
     TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -791,6 +863,312 @@ abstract class _AddProduct implements ProductEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddProductImplCopyWith<_$AddProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchProductImplCopyWith<$Res> {
+  factory _$$SearchProductImplCopyWith(
+          _$SearchProductImpl value, $Res Function(_$SearchProductImpl) then) =
+      __$$SearchProductImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$SearchProductImplCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$SearchProductImpl>
+    implements _$$SearchProductImplCopyWith<$Res> {
+  __$$SearchProductImplCopyWithImpl(
+      _$SearchProductImpl _value, $Res Function(_$SearchProductImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$SearchProductImpl(
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchProductImpl implements _SearchProduct {
+  const _$SearchProductImpl({required this.query});
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'ProductEvent.searchProduct(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchProductImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchProductImplCopyWith<_$SearchProductImpl> get copyWith =>
+      __$$SearchProductImplCopyWithImpl<_$SearchProductImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getProduct,
+    required TResult Function(String category) getByCategory,
+    required TResult Function() getLocal,
+    required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
+  }) {
+    return searchProduct(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getProduct,
+    TResult? Function(String category)? getByCategory,
+    TResult? Function()? getLocal,
+    TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
+  }) {
+    return searchProduct?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getProduct,
+    TResult Function(String category)? getByCategory,
+    TResult Function()? getLocal,
+    TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
+    required TResult orElse(),
+  }) {
+    if (searchProduct != null) {
+      return searchProduct(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetProduct value) getProduct,
+    required TResult Function(_GetByCategory value) getByCategory,
+    required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
+  }) {
+    return searchProduct(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetProduct value)? getProduct,
+    TResult? Function(_GetByCategory value)? getByCategory,
+    TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
+  }) {
+    return searchProduct?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetProduct value)? getProduct,
+    TResult Function(_GetByCategory value)? getByCategory,
+    TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
+    required TResult orElse(),
+  }) {
+    if (searchProduct != null) {
+      return searchProduct(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchProduct implements ProductEvent {
+  const factory _SearchProduct({required final String query}) =
+      _$SearchProductImpl;
+
+  String get query;
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchProductImplCopyWith<_$SearchProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAllFromStateImplCopyWith<$Res> {
+  factory _$$FetchAllFromStateImplCopyWith(_$FetchAllFromStateImpl value,
+          $Res Function(_$FetchAllFromStateImpl) then) =
+      __$$FetchAllFromStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchAllFromStateImplCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$FetchAllFromStateImpl>
+    implements _$$FetchAllFromStateImplCopyWith<$Res> {
+  __$$FetchAllFromStateImplCopyWithImpl(_$FetchAllFromStateImpl _value,
+      $Res Function(_$FetchAllFromStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$FetchAllFromStateImpl implements _FetchAllFromState {
+  const _$FetchAllFromStateImpl();
+
+  @override
+  String toString() {
+    return 'ProductEvent.fethcAllFromState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FetchAllFromStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getProduct,
+    required TResult Function(String category) getByCategory,
+    required TResult Function() getLocal,
+    required TResult Function(Product product, XFile image) addProduct,
+    required TResult Function(String query) searchProduct,
+    required TResult Function() fethcAllFromState,
+  }) {
+    return fethcAllFromState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getProduct,
+    TResult? Function(String category)? getByCategory,
+    TResult? Function()? getLocal,
+    TResult? Function(Product product, XFile image)? addProduct,
+    TResult? Function(String query)? searchProduct,
+    TResult? Function()? fethcAllFromState,
+  }) {
+    return fethcAllFromState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getProduct,
+    TResult Function(String category)? getByCategory,
+    TResult Function()? getLocal,
+    TResult Function(Product product, XFile image)? addProduct,
+    TResult Function(String query)? searchProduct,
+    TResult Function()? fethcAllFromState,
+    required TResult orElse(),
+  }) {
+    if (fethcAllFromState != null) {
+      return fethcAllFromState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetProduct value) getProduct,
+    required TResult Function(_GetByCategory value) getByCategory,
+    required TResult Function(_GetLocal value) getLocal,
+    required TResult Function(_AddProduct value) addProduct,
+    required TResult Function(_SearchProduct value) searchProduct,
+    required TResult Function(_FetchAllFromState value) fethcAllFromState,
+  }) {
+    return fethcAllFromState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetProduct value)? getProduct,
+    TResult? Function(_GetByCategory value)? getByCategory,
+    TResult? Function(_GetLocal value)? getLocal,
+    TResult? Function(_AddProduct value)? addProduct,
+    TResult? Function(_SearchProduct value)? searchProduct,
+    TResult? Function(_FetchAllFromState value)? fethcAllFromState,
+  }) {
+    return fethcAllFromState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetProduct value)? getProduct,
+    TResult Function(_GetByCategory value)? getByCategory,
+    TResult Function(_GetLocal value)? getLocal,
+    TResult Function(_AddProduct value)? addProduct,
+    TResult Function(_SearchProduct value)? searchProduct,
+    TResult Function(_FetchAllFromState value)? fethcAllFromState,
+    required TResult orElse(),
+  }) {
+    if (fethcAllFromState != null) {
+      return fethcAllFromState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAllFromState implements ProductEvent {
+  const factory _FetchAllFromState() = _$FetchAllFromStateImpl;
 }
 
 /// @nodoc

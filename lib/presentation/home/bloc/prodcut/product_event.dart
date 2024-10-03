@@ -12,4 +12,7 @@ class ProductEvent with _$ProductEvent {
     required Product product,
     required XFile image,
   }) = _AddProduct;
+  const factory ProductEvent.searchProduct({required String query}) =
+      _SearchProduct;
+  const factory ProductEvent.fethcAllFromState() = _FetchAllFromState;
 }

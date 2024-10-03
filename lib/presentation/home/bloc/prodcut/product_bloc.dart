@@ -21,6 +21,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<_GetLocal>(_getLocal);
     on<_GetByCategory>(_getByCategory);
     on<_AddProduct>(_addProduct);
+    on<_SearchProduct>(_searchProduct);
+    on<_FetchAllFromState>(_fetchAllFromState);
   }
 
   Future<void> _getProduct(
@@ -87,5 +89,25 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(_Success(product: products));
       },
     );
+  }
+
+  void _searchProduct(
+    _SearchProduct event,
+    Emitter<ProductState> emit,
+  ) {
+    emit(const _Loading());
+    final newProducts = products
+        .where((element) =>
+            element.name.toLowerCase().contains(event.query.toLowerCase()))
+        .toList();
+    emit(_Success(product: newProducts));
+  }
+
+  void _fetchAllFromState(
+    _FetchAllFromState event,
+    Emitter<ProductState> emit,
+  ) {
+    emit(const _Loading());
+    emit(_Success(product: products));
   }
 }
