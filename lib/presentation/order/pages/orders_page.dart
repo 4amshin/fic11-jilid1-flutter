@@ -107,7 +107,15 @@ class _OrdersPageState extends State<OrdersPage> {
                             iconPath: Assets.icons.qrCode.path,
                             label: 'QRIS',
                             isActive: value == 2,
-                            onPressed: () => indexValue.value = 2,
+                            onPressed: () {
+                              indexValue.value = 2;
+                              context
+                                  .read<OrderBloc>()
+                                  .add(OrderEvent.addPaymentMethod(
+                                    paymentMethod: 'QRIS',
+                                    orders: orders,
+                                  ));
+                            },
                           ),
                           const SpaceWidth(10.0),
                         ],

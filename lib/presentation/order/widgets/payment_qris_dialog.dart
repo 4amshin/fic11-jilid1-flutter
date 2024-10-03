@@ -92,16 +92,17 @@ class _PaymentQrisDialogState extends State<PaymentQrisDialog> {
               return state.maybeWhen(
                 orElse: () => const Center(child: CircularProgressIndicator()),
                 success: (products, totalQuantity, totalPrice, paymentMethod,
-                        nominalBayar, idKasir, namaKasir) =>
-                    _buildPaymentSection(
-                  products: products,
-                  totalQuantity: totalQuantity,
-                  totalPrice: totalPrice,
-                  paymentMethod: paymentMethod,
-                  nominalBayar: nominalBayar,
-                  idKasir: idKasir,
-                  namaKasir: namaKasir,
-                ),
+                    nominalBayar, idKasir, namaKasir) {
+                  return _buildPaymentSection(
+                    products: products,
+                    totalQuantity: totalQuantity,
+                    totalPrice: totalPrice,
+                    paymentMethod: paymentMethod,
+                    nominalBayar: nominalBayar,
+                    idKasir: idKasir,
+                    namaKasir: namaKasir,
+                  );
+                },
               );
             },
           ),
