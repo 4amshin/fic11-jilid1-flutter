@@ -135,4 +135,11 @@ class ProductLocalDatasource {
 
     return result.map((e) => Product.fromLocalMap(e)).toList();
   }
+
+  //get all order
+  Future<List<OrderModel>> getAllOrders() async {
+    final db = await instance.database;
+    final result = await db.query('orders', orderBy: 'id DESC');
+    return result.map((e) => OrderModel.fromLocalMap(e)).toList();
+  }
 }

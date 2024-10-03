@@ -1,6 +1,6 @@
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/constants/colors.dart';
-import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
+import 'package:fic11_jilid1/presentation/history/pages/history_page.dart';
 import 'package:fic11_jilid1/presentation/home/pages/home_page.dart';
 import 'package:fic11_jilid1/presentation/home/widgets/nav_item.dart';
 import 'package:fic11_jilid1/presentation/manage/pages/manage_menu_page.dart';
@@ -20,7 +20,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> _pages = [
     const HomePage(),
     const OrdersPage(),
-    const Placeholder(),
+    const HistoryPage(),
     const ManageMenuPage()
   ];
 
