@@ -5,8 +5,11 @@ import 'package:fic11_jilid1/presentation/auth/login_page.dart';
 import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+void main() async {
+  // Inisialisasi date formatting sebelum runApp
+  await initializeDateFormatting('id_ID', null);
   runApp(const MyApp());
 }
 

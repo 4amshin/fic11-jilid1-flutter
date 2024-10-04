@@ -3,6 +3,7 @@ import 'package:fic11_jilid1/core/constants/colors.dart';
 import 'package:fic11_jilid1/core/extensions/int_ext.dart';
 import 'package:fic11_jilid1/presentation/order/models/order_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HistoryTransactionCard extends StatelessWidget {
   final OrderModel data;
@@ -15,6 +16,11 @@ class HistoryTransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Parse transactionTime dan format tanggal
+    final DateTime parsedDate = DateTime.parse(data.transactionTime);
+    final String formattedDate =
+        DateFormat('dd MMM yyyy - HH:mm', 'id_ID').format(parsedDate);
+
     return Container(
       margin: padding,
       decoration: BoxDecoration(
@@ -30,15 +36,39 @@ class HistoryTransactionCard extends StatelessWidget {
       ),
       child: ListTile(
         leading: Assets.icons.payments.svg(),
-        title: Text(data.paymentMethod),
-        subtitle: Text('${data.totalQuantity} items'),
-        trailing: Text(
-          data.totalPrice.currencyFormatRp,
+        title: Text(
+          data.paymentMethod,
           style: const TextStyle(
-            color: AppColors.green,
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ),
+        ),
+        subtitle: Text(
+          formattedDate,
+          style: const TextStyle(
+            fontSize: 12,
+          ),
+        ),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              data.totalPrice.currencyFormatRp,
+              style: const TextStyle(
+                color: AppColors.green,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Text(
+              'by ${data.namaKasir}',
+              style: const TextStyle(
+                color: AppColors.grey,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
       ),
     );

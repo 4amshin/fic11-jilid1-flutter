@@ -40,7 +40,7 @@ class _HistoryPageState extends State<HistoryPage> {
             loading: () => const Center(child: CircularProgressIndicator()),
             success: (data) {
               if (data.isEmpty) {
-                return const Center(child: Text('No Data'));
+                return const Center(child: Text('Kosong Bro'));
               }
               return ListView.separated(
                 padding: const EdgeInsets.symmetric(vertical: 30),
