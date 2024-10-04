@@ -1,9 +1,11 @@
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
+import 'package:fic11_jilid1/core/components/buttons.dart';
 import 'package:fic11_jilid1/core/components/menu_button.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
 import 'package:fic11_jilid1/presentation/manage/pages/manage_printer_page.dart';
 import 'package:fic11_jilid1/presentation/manage/pages/manage_product_page.dart';
+import 'package:fic11_jilid1/presentation/manage/pages/server_key_page.dart';
 import 'package:fic11_jilid1/presentation/manage/widgets/logout_button.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +43,11 @@ class ManageMenuPage extends StatelessWidget {
               ],
             ),
             const SpaceHeight(25),
+            Button.filled(
+              onPressed: () => context.push(const ServerKeyPage()),
+              label: 'QRIS Midtrans Key',
+            ),
+            const SpaceHeight(15),
             const LogoutButton(),
             const SpaceHeight(15),
           ],

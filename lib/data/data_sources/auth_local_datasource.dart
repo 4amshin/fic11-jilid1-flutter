@@ -48,11 +48,13 @@ class AuthLocalDatasource {
   Future<void> saveMidtransServerKey(String serverKey) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setString('server_key', serverKey);
+    log('Server Key ($serverKey) Saved');
   }
 
   Future<String> getMidtransServerKey() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     final serverKey = pref.getString('server_key');
+    log('Fethc Current Server Key ($serverKey)');
     return serverKey ?? '';
   }
 }
