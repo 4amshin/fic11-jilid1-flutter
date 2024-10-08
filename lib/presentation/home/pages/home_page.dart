@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
             // Hanya simpan data ke local storage jika pengambilan data online sukses
             await ProductLocalDatasource.instance.removeAllProduct();
             await ProductLocalDatasource.instance.insertAllProduct(data);
-            log('Data Saved to Local Storage');
+            log('Saving Data to LocalStorage');
           },
           orElse: () {},
         );
@@ -115,16 +115,22 @@ class _HomePageState extends State<HomePage> {
           ),
           centerTitle: true,
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            _buildSearchInput(),
-            const SpaceHeight(20.0),
-            _buildCategoryMenu(),
-            const SpaceHeight(35.0),
-            const ProductList(),
-            const SpaceHeight(30.0),
-          ],
+        body: RefreshIndicator(
+          onRefresh: () async {
+            log('Refresh Product List');
+            context.read<ProductBloc>().add(const ProductEvent.getProduct());
+          },
+          child: ListView(
+            padding: const EdgeInsets.all(16.0),
+            children: [
+              _buildSearchInput(),
+              const SpaceHeight(20.0),
+              _buildCategoryMenu(),
+              const SpaceHeight(35.0),
+              const ProductList(),
+              const SpaceHeight(30.0),
+            ],
+          ),
         ),
       ),
     );
