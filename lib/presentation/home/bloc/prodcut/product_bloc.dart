@@ -35,7 +35,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       (error) => emit(_Error(message: error)),
       (product) {
         products = product.data;
-        emit(_Success(product: product.data));
+        emit(_Success(products: product.data));
       },
     );
   }
@@ -47,7 +47,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     emit(const _Loading());
     final localData = await ProductLocalDatasource.instance.getAllProduct();
     products = localData;
-    emit(_Success(product: products));
+    emit(_Success(products: products));
   }
 
   Future<void> _getByCategory(
@@ -60,7 +60,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         : products
             .where((element) => element.category == event.category)
             .toList();
-    emit(_Success(product: newProducts));
+    emit(_Success(products: newProducts));
   }
 
   Future<void> _addProduct(
@@ -86,7 +86,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       (error) => emit(_Error(message: error)),
       (success) {
         products.add(success.data);
-        emit(_Success(product: products));
+        emit(_Success(products: products));
       },
     );
   }
@@ -100,7 +100,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         .where((element) =>
             element.name.toLowerCase().contains(event.query.toLowerCase()))
         .toList();
-    emit(_Success(product: newProducts));
+    emit(_Success(products: newProducts));
   }
 
   void _fetchAllFromState(
@@ -108,6 +108,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     Emitter<ProductState> emit,
   ) {
     emit(const _Loading());
-    emit(_Success(product: products));
+    emit(_Success(products: products));
   }
 }

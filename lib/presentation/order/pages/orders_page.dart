@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/components/menu_button.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
@@ -97,7 +99,7 @@ class _OrdersPageState extends State<OrdersPage> {
                               context
                                   .read<OrderBloc>()
                                   .add(OrderEvent.addPaymentMethod(
-                                    paymentMethod: 'Tunai',
+                                    paymentMethod: 'cash',
                                     orders: orders,
                                   ));
                             },

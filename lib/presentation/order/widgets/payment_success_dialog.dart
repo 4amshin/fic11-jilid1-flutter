@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
 import 'package:fic11_jilid1/core/extensions/date_time_ext.dart';
 import 'package:fic11_jilid1/core/extensions/int_ext.dart';
+import 'package:fic11_jilid1/core/extensions/string_ext.dart';
 import 'package:fic11_jilid1/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
 import 'package:fic11_jilid1/presentation/manage/models/cwb_print.dart';
@@ -51,7 +52,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                   const SpaceHeight(12.0),
                   _LabelValue(
                     label: 'METODE PEMBAYARAN',
-                    value: paymentMethod,
+                    value: paymentMethod.capitalizeEachWord,
                   ),
                   const Divider(height: 36.0),
                   _LabelValue(

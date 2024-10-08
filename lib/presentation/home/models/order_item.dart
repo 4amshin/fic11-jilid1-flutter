@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:fic11_jilid1/data/models/request/order_request_model.dart';
 import 'package:fic11_jilid1/data/models/response/product_response_model.dart';
 
 class OrderItem {
@@ -27,13 +28,13 @@ class OrderItem {
     };
   }
 
-  // static OrderItemModel.fromMapLocal(Map<String, dynamic> map) {
-  //   return OrderItemModel(
-  //     roductId: map['id_product']?.toInt() ?? 0,
-  //     quantity: map['quantity']?.toInt() ?? 0,
-  //     totalPrice: map['price']?.toInt() ?? 0 * (map['quantity']?.toInt() ?? 0),
-  //   );
-  // }
+  static OrderItemModel fromMapLocal(Map<String, dynamic> map) {
+    return OrderItemModel(
+      productId: map['id_product']?.toInt() ?? 0,
+      quantity: map['quantity']?.toInt() ?? 0,
+      totalPrice: map['price']?.toInt() ?? 0 * (map['quantity']?.toInt() ?? 0),
+    );
+  }
 
   factory OrderItem.fromMap(Map<String, dynamic> map) {
     return OrderItem(

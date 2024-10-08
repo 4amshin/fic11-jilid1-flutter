@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
 import 'package:fic11_jilid1/data/data_sources/product_local_datasource.dart';
@@ -32,6 +33,7 @@ class _PaymentQrisDialogState extends State<PaymentQrisDialog> {
   @override
   void initState() {
     super.initState();
+    log('Proceeding with QRIS Payment');
     _initializeOrder();
   }
 
@@ -155,8 +157,10 @@ class _PaymentQrisDialogState extends State<PaymentQrisDialog> {
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () => const SizedBox(),
-                  qrisResponse: (data) =>
-                      _buildQRCodeWidget(url: data.actions!.first.url!),
+                  qrisResponse: (data) {
+                    log('Displaying QRIS Barcode');
+                    return _buildQRCodeWidget(url: data.actions!.first.url!);
+                  },
                   loading: () => _buildLoadingWidget(),
                 );
               },

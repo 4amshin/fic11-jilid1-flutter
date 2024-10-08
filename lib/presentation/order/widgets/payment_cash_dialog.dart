@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fic11_jilid1/core/extensions/build_context_ext.dart';
 import 'package:fic11_jilid1/core/extensions/int_ext.dart';
 import 'package:fic11_jilid1/core/extensions/string_ext.dart';
@@ -110,7 +112,7 @@ class _PaymentCashDialogState extends State<PaymentCashDialog> {
               state.maybeWhen(
                 orElse: () {},
                 success: (products, totalQuantity, totalPrice, paymentMethod,
-                    nominalBayar, idKasir, namaKasir) {
+                    nominalBayar, idKasir, namaKasir) async {
                   final orderModel = OrderModel(
                     paymentMethod: paymentMethod,
                     nominalBayar: nominalBayar,
@@ -124,7 +126,8 @@ class _PaymentCashDialogState extends State<PaymentCashDialog> {
                         .format(DateTime.now()),
                   );
 
-                  ProductLocalDatasource.instance.saveOrder(orderModel);
+                  await ProductLocalDatasource.instance.saveOrder(orderModel);
+
                   context.pop();
                   showDialog(
                     context: context,
@@ -140,6 +143,8 @@ class _PaymentCashDialogState extends State<PaymentCashDialog> {
                     idKasir, namaKasir) {
                   return Button.filled(
                     onPressed: () {
+                      log('Proceeding with Cash Payment');
+
                       context.read<OrderBloc>().add(OrderEvent.addNominalBayar(
                             nominal: priceController!.text.toIntegerFromText,
                           ));

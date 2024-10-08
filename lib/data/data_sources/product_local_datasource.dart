@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fic11_jilid1/data/models/request/order_request_model.dart';
 import 'package:fic11_jilid1/data/models/response/product_response_model.dart';
 import 'package:fic11_jilid1/presentation/home/models/order_item.dart';
 import 'package:fic11_jilid1/presentation/order/models/order_model.dart';
@@ -77,14 +78,27 @@ class ProductLocalDatasource {
   Future<List<OrderModel>> getOrderByIsSync() async {
     final db = await instance.database;
     final result = await db.query('orders', where: 'is_sync = 0');
+
+    // Log untuk menampilkan data yang didapat dari database
+    log('Data Log:');
+    result.forEach((order) {
+      log(order.toString()); // Menampilkan setiap order dalam bentuk Map
+    });
+
     return result.map((e) => OrderModel.fromLocalMap(e)).toList();
   }
 
   //get Order item by id order
-  Future<List<OrderItem>> getOrderItemByOrderIdLocal(int orderId) async {
+  Future<List<OrderItemModel>> getOrderItemByOrderIdLocal(int orderId) async {
     final db = await instance.database;
     final result = await db.query('order_items', where: 'id_order = $orderId');
-    return result.map((e) => OrderItem.fromMap(e)).toList();
+
+    // Log untuk menampilkan data yang didapat dari database
+    log('Data Berdasarkan Id:');
+    result.forEach((orderItem) {
+      log(orderItem.toString()); // Menampilkan setiap item dalam bentuk Map
+    });
+    return result.map((e) => OrderItem.fromMapLocal(e)).toList();
   }
 
   //update isSync order by id
@@ -117,7 +131,7 @@ class ProductLocalDatasource {
     // Log the retrieved data
     final List<Map<String, dynamic>> allProducts =
         await db.query(tableProducts);
-    log('All Products in Local Storage: $allProducts');
+    log('Data in LocalStorage: $allProducts');
   }
 
   //insert single product

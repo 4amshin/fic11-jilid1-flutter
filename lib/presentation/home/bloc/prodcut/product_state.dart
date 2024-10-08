@@ -5,7 +5,7 @@ class ProductState with _$ProductState {
   const factory ProductState.initial() = _Initial;
   const factory ProductState.loading() = _Loading;
   const factory ProductState.success({
-    required List<Product> product,
+    required List<Product> products,
   }) = _Success;
   const factory ProductState.error({
     required String message,

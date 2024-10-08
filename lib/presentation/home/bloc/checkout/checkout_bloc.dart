@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 // import 'package:dartz/dartz.dart';
 import 'package:fic11_jilid1/data/models/response/product_response_model.dart';
@@ -65,19 +67,22 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   void _updateProductQuantity(List<OrderItem> products, Product product) {
     final index = products.indexWhere((item) => item.product == product);
     if (index != -1) {
+      log('Add Product Quantity');
       products[index].quantity++;
     } else {
+      log('Adding Product to Order List');
       products.add(OrderItem(product: product, quantity: 1));
     }
   }
 
   void _decreaseProductQuantity(List<OrderItem> products, Product product) {
     final index = products.indexWhere((item) => item.product == product);
-
     if (index != -1) {
       if (products[index].quantity > 1) {
+        log('Reduce Product Quantity');
         products[index].quantity--;
       } else {
+        log('Removing Product From Order List');
         products.removeAt(index);
       }
     }

@@ -1,6 +1,7 @@
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/constants/colors.dart';
 import 'package:fic11_jilid1/core/extensions/int_ext.dart';
+import 'package:fic11_jilid1/core/extensions/string_ext.dart';
 import 'package:fic11_jilid1/presentation/order/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -37,7 +38,7 @@ class HistoryTransactionCard extends StatelessWidget {
       child: ListTile(
         leading: Assets.icons.payments.svg(),
         title: Text(
-          data.paymentMethod,
+          data.paymentMethod.capitalizeEachWord,
           style: const TextStyle(
             fontWeight: FontWeight.w600,
           ),
