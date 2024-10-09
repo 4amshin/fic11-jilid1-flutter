@@ -1,16 +1,13 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/components/menu_button.dart';
 import 'package:fic11_jilid1/core/components/search_input.dart';
 import 'package:fic11_jilid1/core/components/spaces.dart';
-import 'package:fic11_jilid1/data/data_sources/product_local_datasource.dart';
 import 'package:fic11_jilid1/presentation/home/bloc/prodcut/product_bloc.dart';
 import 'package:fic11_jilid1/presentation/home/widgets/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,58 +19,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
   final ValueNotifier<int> _selectCategoryIndex = ValueNotifier(0);
-  StreamSubscription? _internetConnection;
-  bool _isOnline = false;
 
   @override
   void initState() {
     super.initState();
-    _initializeInternetConnection();
+    _fetchLocalData();
   }
 
   @override
   void dispose() {
-    _internetConnection?.cancel();
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _initializeInternetConnection() {
-    _internetConnection =
-        InternetConnection().onStatusChange.listen((InternetStatus status) {
-      switch (status) {
-        case InternetStatus.connected:
-          _isOnline = true;
-          log('Online');
-          _fetchOnlineData();
-          break;
-        case InternetStatus.disconnected:
-          _isOnline = false;
-          log('Offline');
-          _fetchLocalData();
-          break;
-      }
-    });
-  }
-
-  void _fetchOnlineData() {
-    // Kirim event untuk mengambil data online
-    context.read<ProductBloc>().add(const ProductEvent.getProduct());
-
-    // Buat listener yang hanya merespon event pengambilan data online
-    context.read<ProductBloc>().stream.listen((state) async {
-      if (_isOnline) {
-        state.maybeWhen(
-          success: (data) async {
-            // Hanya simpan data ke local storage jika pengambilan data online sukses
-            await ProductLocalDatasource.instance.removeAllProduct();
-            await ProductLocalDatasource.instance.insertAllProduct(data);
-            log('Saving Data to LocalStorage');
-          },
-          orElse: () {},
-        );
-      }
-    });
   }
 
   void _fetchLocalData() {

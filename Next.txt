@@ -1,9 +1,7 @@
 - PERBAIKI LOGIKA getByCategory
 - BUAT FITUR REFRESH, YANG AKAN MENGEKSEKUIS GETPRODUCT
 =============================
-PROSES SINK DATA PRODUCT BERHASIL
-SYNK DATA ORDER BELUM BERHASIL, Ketika dicek di databse local order belum tersimpan
-TERNYATA MASALAHNYA DI paymentMethod yang dikirim "Tunai" sedangkan hanya bisaa menerima [cash, qris]
-TELAH DIGANTI DAN TELAH BERHASIL, SLEANJUTNAY BERSIHKAN KODENYA
-PASANG LOG DI BAGAIN BACGROUND AGAR PROSES TAMPIL DI DEBUG CONSOLE.
-MINTA SARAN GPT TERKAIT LOG YANG CLEAN
+- Log Debug COnsole untuk setiap PROSES
+    - Add, Reduce and Checkout Order (COMPLETE)
+    -
+- Continue SyncService (Auto Sync Data in Background when online of Ofline)

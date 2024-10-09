@@ -1,5 +1,6 @@
 import 'package:fic11_jilid1/core/constants/colors.dart';
 import 'package:fic11_jilid1/core/fic_providers.dart';
+import 'package:fic11_jilid1/core/sync_service.dart';
 import 'package:fic11_jilid1/data/data_sources/auth_local_datasource.dart';
 import 'package:fic11_jilid1/presentation/auth/login_page.dart';
 import 'package:fic11_jilid1/presentation/home/pages/dashboard_page.dart';
@@ -18,6 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Mulai Sinkronisasi saat app dimulai
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SyncService().syncData(context);
+    });
+
     return FicProviders(
       child: MaterialApp(
         title: 'FIC11 Jilid1',

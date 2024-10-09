@@ -1,11 +1,16 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:fic11_jilid1/core/assets/assets.gen.dart';
 import 'package:fic11_jilid1/core/constants/colors.dart';
+import 'package:fic11_jilid1/core/sync_service.dart';
 import 'package:fic11_jilid1/presentation/history/pages/history_page.dart';
 import 'package:fic11_jilid1/presentation/home/pages/home_page.dart';
 import 'package:fic11_jilid1/presentation/home/widgets/nav_item.dart';
 import 'package:fic11_jilid1/presentation/manage/pages/manage_menu_page.dart';
 import 'package:fic11_jilid1/presentation/order/pages/orders_page.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -15,6 +20,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  StreamSubscription? _internetConnection;
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
@@ -23,6 +29,33 @@ class _DashboardPageState extends State<DashboardPage> {
     const HistoryPage(),
     const ManageMenuPage()
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeInternetConnection();
+  }
+
+  void _initializeInternetConnection() {
+    _internetConnection =
+        InternetConnection().onStatusChange.listen((InternetStatus status) {
+      switch (status) {
+        case InternetStatus.connected:
+          // ignore: use_build_context_synchronously
+          SyncService().syncData(context);
+          break;
+        case InternetStatus.disconnected:
+          log("Offline, no sync will occur");
+          break;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _internetConnection?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
