@@ -49,11 +49,6 @@ class ManageMenuPage extends StatelessWidget {
               label: 'QRIS Midtrans Key',
             ),
             const SpaceHeight(15),
-            Button.filled(
-              onPressed: () => context.push(const SyncDataPage()),
-              label: 'Sinkronisasi Data',
-            ),
-            const SpaceHeight(15),
             const LogoutButton(),
             const SpaceHeight(15),
           ],
