@@ -13,7 +13,7 @@ class OrderRequestModel {
     required this.totalPrice,
     required this.totalItem,
     required this.kasirId,
-    this.paymentMethod = 'cash',
+    required this.paymentMethod,
     required this.orderItems,
   });
 

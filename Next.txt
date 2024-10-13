@@ -1,7 +1,4 @@
 - PERBAIKI LOGIKA getByCategory
 - BUAT FITUR REFRESH, YANG AKAN MENGEKSEKUIS GETPRODUCT
 =============================
-- Log Debug COnsole untuk setiap PROSES
-    - Add, Reduce and Checkout Order (COMPLETE)
-    -
-- Continue SyncService (Auto Sync Data in Background when online of Ofline)
+- TAMBAHKAN LOG UNTUK SETIAP PROSES YANG TIDAK MUNCUL DI UI

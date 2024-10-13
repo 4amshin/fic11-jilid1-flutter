@@ -75,8 +75,9 @@ class SyncService {
     // Batalkan timer jika sudah berjalan sebelumnya untuk mencegah duplikasi
     _orderSyncTimer?.cancel();
 
-    // Jalankan setiap 1 menit
-    _orderSyncTimer = Timer.periodic(const Duration(minutes: 1), (timer) async {
+    // Jalankan setiap 10 menit
+    _orderSyncTimer =
+        Timer.periodic(const Duration(seconds: 30), (timer) async {
       log("Auto Syncing Orders Data to Server");
       await _syncOrders(syncOrderBloc);
     });
